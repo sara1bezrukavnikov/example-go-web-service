@@ -1,0 +1,4 @@
+apiVersion: v1
+description: An example Go web service chart
+name: example-go-web-service
+version: 1.0.0

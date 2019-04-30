@@ -1,0 +1,14 @@
+---
+replicaCount: 3
+
+image:
+  repository: cirrocloud/example-go-web-service
+  tag: v1.0.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+env:
+  app_name: Go web service

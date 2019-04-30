@@ -1,0 +1,6 @@
+
+View the application by running the following commands:
+
+  kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "example-go-web-service.fullname" . }} {{ .Values.service.port }}:{{ .Values.service.port }}
+
+Then visit http://localhost:{{ .Values.service.port }} in your browser.
