@@ -2,8 +2,8 @@
 replicaCount: 3
 
 image:
-  repository: cirrocloud/example-go-web-service
-  tag: v1.0.0
+  repository: quay.io/cirrocloud/example-go-web-service
+  tag: v1.1.0
   pullPolicy: IfNotPresent
 
 service:
