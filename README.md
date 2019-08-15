@@ -10,9 +10,9 @@ how we got to using Helm charts.
 ## Requirements
 
 - Go >= 1.11
-- Docker >= 17.05
+- Docker Desktop for Mac >= 17.05
+- Kubernetes cluster (Docker Desktop for Mac includes this)
 - Helm
-- Kubernetes cluster
 
 ## Stages
 
@@ -63,7 +63,7 @@ Open `http://localhost:8080/` in your browser to view the output.
 
 ### Stage Three
 
-The final stage is creating an application deployment using a Helm chart and the container image
+In the third stage we will create an application deployment using a Helm chart and the container image
 built in the previous stage. Helm allows templating and overriding configuration to match the 
 environment the container will run in. This allows the application package to remain immutable as 
 it is deployed to different environments.
@@ -81,3 +81,20 @@ kubectl -n example-go-web-service port-forward svc/example-go-web-service 8080:8
 ```
 
 Open `http://localhost:8080/` in your browser to view the output.
+
+### Stage Four
+
+Now we have a working example of a web service. But we are connecting to it using a port forward. 
+This isn't very realistic for end users to interact with your application. There are many ways to 
+expose a web service externally from the Kubernetes cluster, but for our example we will use an 
+ingress controller with ingress rules.
+
+By default the ingress resource and rules have already been created when we ran the Helm chart in step three. To make it work we must complete a couple steps.
+
+Install the ingress controller.
+
+```sh
+helm install stable/nginx-ingress --name nginx-ingress --namespace ingress
+```
+
+Open `http://localhost/` in your browser to view the output.
