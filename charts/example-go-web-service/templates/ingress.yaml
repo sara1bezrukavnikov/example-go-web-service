@@ -14,7 +14,7 @@ spec:
             backend:
               serviceName: {{ include "example-go-web-service.fullname" . }}
               servicePort: {{ .Values.service.port }}
-    - host: example.com
+    - host: {{ .Values.hostname }}
       http:
         paths:
           - path: /

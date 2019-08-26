@@ -10,5 +10,7 @@ service:
   type: ClusterIP
   port: 8080
 
+hostname: example.com
+
 env:
   app_name: Go web service
