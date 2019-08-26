@@ -7,20 +7,17 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: localhost
+      {{- $serviceName := include "example-go-web-service.fullname" . }}
+      {{- $servicePort := .Values.service.port }}
+      {{- range .Values.hostname }}
+    - host: {{ . }}
       http:
         paths:
           - path: /
             backend:
-              serviceName: {{ include "example-go-web-service.fullname" . }}
-              servicePort: {{ .Values.service.port }}
-    - host: example.com
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: {{ include "example-go-web-service.fullname" . }}
-              servicePort: {{ .Values.service.port }}
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+      {{- end }}
     - host: {{ include "example-go-web-service.fullname" . }}
       http:
         paths:
